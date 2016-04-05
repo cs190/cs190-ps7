@@ -8,14 +8,14 @@
  ## Reading that is Related to this Week's Lectures and/or This Problem Set
  
  This is Part II of the RSA Cryptography Problem Set begun last week.
+
+ For this problem set, we are going to finish Rivest-Shamir-Adleman (RSA) cryptography following the Wikibook [A Basic Public Key Example]( https://en.wikibooks.org/wiki/A_Basic_Public_Key_Example ). For convenience I snarfed a printable copy of the first six sections into cs190-ps6. That's the cookbook you will be following.
  
- For this problem set, we are going to finish Rivest-Shamir-Adleman (RSA) cryptography following the Wikibook [A Basic Public Key Example]( https://en.wikibooks.org/wiki/A_Basic_Public_Key_Example ). For convenience I snarfed a printable copy of the first six sections into cs190-ps6.
- 
- In my implementation of RSA.publicKey(), you'll see that I used the coprimes utility you implemented last week.
+ The Wikibook is too much a cookbook, and that can be good, but if you want to understand the mathematical identities that make RSA cryptography true, then this is a better reference: [Prime Number Hide-and-Seek: How the RSA Cipher Works]( http://www.muppetlabs.com/~breadbox/txt/rsa.html ). I snarfed a printable copy of that into this project.
  
  ## Directions Specific to this Problem Set
  
- I have implemented a couple of important methods on the class RSA, specifically: RSA.publicKey() and RSA.encrypt().
+ In my implementation of RSA.publicKey(), you'll see that I used the coprimes utility you implemented last week.
  
  Your job is to implement the following two methods on the class RSA:
  
@@ -43,7 +43,7 @@
  
  5. When completed, before the class the problem set is due, commit your changes to your fork of the repository. I should be able to simply clone your fork, build it and execute it in my environment without encountering any warnings, adding any dependencies or making any modifications.
  
- ## Implementations from Last Week's Problem Set.
+ ## Utility Implementations from Last Week
  */
 // Returns an array of booleans of length highest, where each boolean says whether that number is prime.
 func sieveOfEratosthenes(highest: Int) -> [Bool] {
@@ -175,6 +175,9 @@ class RSA: Crypto {
     
     // Encrypts plainValue using the public key. Returns the cipher text.
     func encrypt(plainValue: Int) -> Int {
+        // My implementation of this function stinks because it only works for small numbers.
+        // I will happily award a point of extra credit if you rewrite my implementation using the method here:
+        // http://www.pagedon.com/modular-exponentiation/my_programming/
         let publicKey = self.publicKey()
         var exponentiated = 1
         for _ in 0 ..< publicKey.encryptionExponent {
